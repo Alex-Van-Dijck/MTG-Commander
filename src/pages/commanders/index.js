@@ -2,8 +2,8 @@ import React from 'react';
 import { graphql, useStaticQuery } from 'gatsby';
 import { makeStyles } from '@material-ui/core/styles';
 import { Grid, Card, CardActionArea, CardContent, CardMedia, Typography } from '@material-ui/core';
-import Seo from "../components/seo";
-import Layout from '../components/layout';
+import Seo from "../../components/seo";
+import Layout from '../../components/layout';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -20,16 +20,18 @@ const useStyles = makeStyles((theme) => ({
 const CommandersPage = ({data: {allWpCommander: {edges}}}) => {
   const classes = useStyles();
 
-  console.log(edges);
-
   return (
     <Layout>
       <Grid container spacing={3}>
         {edges.map((edge) => {
           const commander = edge.node.commanderMeta;
+          const html = commander.description;
+          const slug = edge.node.slug;
+          console.log(slug);
+          console.log(edge.node)
           return <Grid item xs={12} sm={6} md={4} key={commander.name} >
             <Card className={classes.card}>
-              <CardActionArea>
+              <CardActionArea href={"/commanders/"+{slug}}>
                 <CardMedia
                   className={classes.media}
                   image={commander.art.sourceUrl}
@@ -39,8 +41,8 @@ const CommandersPage = ({data: {allWpCommander: {edges}}}) => {
                   <Typography gutterBottom variant="h5" component="h2">
                     {commander.name}
                   </Typography>
-                  <Typography variant="body2" color="textSecondary" component="p">
-                    {commander.description}
+                  <Typography variant="body2" color="textSecondary" component="p" dangerouslySetInnerHTML={{__html:html}}>
+                    
                   </Typography>
                 </CardContent>
               </CardActionArea>
@@ -59,6 +61,7 @@ export const query = graphql`
       edges {
         node {
           id
+          slug
           commanderMeta {
             name
             description
@@ -72,7 +75,5 @@ export const query = graphql`
   }
 
 `
-
-export const Head = () => <Seo title="Commanders" />
 
 export default CommandersPage;

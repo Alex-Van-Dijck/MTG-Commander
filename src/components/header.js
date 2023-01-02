@@ -28,8 +28,13 @@ const Header = ({ siteTitle }) => {
       <AppBar position="static" className={classes.appBar}>
         <Toolbar>
           <Typography variant="h6" className={classes.title}>
-            <Link to="/" style={{textDecoration:'none'}}>
+            <Link to="/" style={{textDecoration:'none'}} >
               {siteTitle}
+            </Link>
+          </Typography>
+          <Typography variant="h6" className={classes.title}>
+            <Link to="/commanders" style={{textDecoration:'none'}} >
+              Commanders
             </Link>
           </Typography>
         </Toolbar>
