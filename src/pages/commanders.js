@@ -20,41 +20,36 @@ const useStyles = makeStyles((theme) => ({
 const CommandersPage = ({data: {allWpCommander: {edges}}}) => {
   const classes = useStyles();
 
+  console.log(edges);
+
   return (
-
-    <Layout pageTitle="Artists of Inghelbrecht Agency">
-      {edges.map((item) => {
-        const commander = item.node.commanderMeta;
-        return <p key={item.node.id}>{commander.name},{commander.description} test</p>
+    <Layout>
+      <Grid container spacing={3}>
+        {edges.map((edge) => {
+          const commander = edge.node.commanderMeta;
+          return <Grid item xs={12} sm={6} md={4} key={commander.name} >
+            <Card className={classes.card}>
+              <CardActionArea>
+                <CardMedia
+                  className={classes.media}
+                  image={commander.art.sourceUrl}
+                  title={commander.name}
+                />
+                <CardContent>
+                  <Typography gutterBottom variant="h5" component="h2">
+                    {commander.name}
+                  </Typography>
+                  <Typography variant="body2" color="textSecondary" component="p">
+                    {commander.description}
+                  </Typography>
+                </CardContent>
+              </CardActionArea>
+            </Card>
+          </Grid>
       })}
+      </Grid>
     </Layout>
-
-    // <div className={classes.root}>
-    //   <Grid container spacing={3}>
-    //     {edges.map((edge) => {
-    //       const commander = edge.node.commanderMeta;
-    //       <Grid item xs={12} sm={6} md={4} key={commander.name} >
-    //         <Card className={classes.card}>
-    //           <CardActionArea>
-    //             <CardMedia
-    //               className={classes.media}
-    //               image={commander.art.sourceUrl}
-    //               title={commander.name}
-    //             />
-    //             <CardContent>
-    //               <Typography gutterBottom variant="h5" component="h2">
-    //                 {commander.name}
-    //               </Typography>
-    //               <Typography variant="body2" color="textSecondary" component="p">
-    //                 {commander.node.description}
-    //               </Typography>
-    //             </CardContent>
-    //           </CardActionArea>
-    //         </Card>
-    //       </Grid>
-    //   })}
-    //   </Grid>
-    // </div>
+    
   );
 };
 
