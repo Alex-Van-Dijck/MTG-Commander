@@ -56,10 +56,11 @@ const CommandersPage = ({data: {allWpCommander: {edges}}}) => {
 };
 
 export const query = graphql`
-  query {
-    allWpCommander {
-      edges {
-        node {
+query HomeQuery {
+  wpPage(slug: {eq: "home"}) {
+    homeFields {
+      featuredCommanders {
+        ... on WpCommander {
           id
           slug
           commanderMeta {
@@ -71,8 +72,15 @@ export const query = graphql`
           }
         }
       }
+      description
+      title
+      picture {
+        sourceUrl
+      }
     }
   }
+}
+
 
 `
 
