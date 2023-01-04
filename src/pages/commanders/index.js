@@ -22,7 +22,7 @@ const CommandersPage = ({data: {allWpCommander: {edges}}}) => {
 
   return (
     <Layout>
-      <Grid container spacing={3}>
+      <Grid container spacing={3} wrap='wrap' justifyContent='center'>
         {edges.map((edge) => {
           const commander = edge.node.commanderMeta;
           const html = commander.description;

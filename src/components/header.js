@@ -1,8 +1,9 @@
 import * as React from "react"
-import PropTypes from "prop-types"
+import PropTypes, { string } from "prop-types"
 import { Link } from "gatsby"
 import { makeStyles } from '@material-ui/core/styles';
-import {AppBar,Toolbar,Typography} from '@material-ui/core';
+import {AppBar,Toolbar,Typography,Menu} from '@material-ui/core';
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -21,12 +22,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+
 const Header = ({ siteTitle }) => {
   const classes = useStyles();
+
   return(
     <div className={classes.root}>
       <AppBar position="static" className={classes.appBar}>
-        <Toolbar>
+        <Toolbar >
           <Typography variant="h6" className={classes.title}>
             <Link to="/" style={{textDecoration:'none'}} >
               {siteTitle}
@@ -35,6 +38,11 @@ const Header = ({ siteTitle }) => {
           <Typography variant="h6" className={classes.title}>
             <Link to="/commanders" style={{textDecoration:'none'}} >
               Commanders
+            </Link>
+          </Typography>
+          <Typography variant="h6" className={classes.title}>
+            <Link to="/contact" style={{textDecoration:'none'}} >
+              Contact
             </Link>
           </Typography>
         </Toolbar>
