@@ -1,24 +1,12 @@
 import React from 'react';
 import { graphql, useStaticQuery } from 'gatsby';
-import { makeStyles } from '@material-ui/core/styles';
-import { Grid, Card, CardActionArea, CardContent, CardMedia, Typography } from '@material-ui/core';
+import { Grid, Card, CardActionArea, CardContent, CardMedia, Typography } from '@mui/material';
 import Seo from "../../components/seo";
 import Layout from '../../components/layout';
+import styles from "./index.module.css"
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
-  card: {
-    maxWidth: 345,
-  },
-  media: {
-    height: 140,
-  },
-}));
 
 const CommandersPage = ({data: {allWpCommander: {edges}}}) => {
-  const classes = useStyles();
 
   return (
     <Layout>
@@ -28,12 +16,12 @@ const CommandersPage = ({data: {allWpCommander: {edges}}}) => {
           const html = commander.description;
           const slug = edge.node.slug;
           console.log(slug);
-          console.log(edge.node)
+          console.log(edge.node);
           return <Grid item xs={12} sm={6} md={4} key={commander.name} >
-            <Card className={classes.card}>
+            <Card className={styles.card}>
               <CardActionArea href={`/commanders/${slug}`}>
                 <CardMedia
-                  className={classes.media}
+                  className={styles.media}
                   image={commander.art.sourceUrl}
                   title={commander.name}
                 />

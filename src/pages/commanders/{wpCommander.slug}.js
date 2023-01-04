@@ -2,7 +2,8 @@ import * as React from "react"
 import { graphql } from "gatsby"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import Layout from "../../components/layout"
-import { Card, CardContent, Typography } from "@material-ui/core";
+import { Card, CardContent, Typography,CardMedia } from "@mui/material";
+
 
 const CommanderPage = ({
     data: {
@@ -13,39 +14,40 @@ const CommanderPage = ({
   const image = getImage(commander.art.localFile);
   const html = commander.description;
 
+  console.log(commander.color);
+
   return (
     <Layout>
-       <Card>
-      <CardContent>
-        <Typography variant="h5" component="h2">
-          {commander.name}
-        </Typography>
-        <Typography variant="body2" component="p">
-          Manacost: {commander.manacost}
-        </Typography>
-        <Typography variant="body2" component="p">
-          Type: {commander.type}
-        </Typography>
-        <Typography variant="body2" component="p"  dangerouslySetInnerHTML={{__html:html}}>
+       <Card sx={{ display: 'flex'}}>
+        <CardContent>
+          <Typography variant="h5" component="h2">
+            {commander.name}
+          </Typography>
+          <Typography variant="body2" component="p">
+          <b>Manacost:</b> {commander.manacost}
+          </Typography>
+          <Typography variant="body2" component="p">
+          <b>Type:</b> {commander.type}
+          </Typography>
+          <Typography variant="body2" component="p">
+            <b>Release date:</b> {commander.releaseDate}
+          </Typography>
+          <Typography variant="body2" component="p">
+            <b>Set:</b> {commander.set}
+          </Typography>
+          <Typography variant="body2" component="p">
+            <b>Rarity:</b> {commander.rarity}
+          </Typography>
+          <Typography variant="body2" component="p">
+            <b>Color(s):</b> {commander.color}
+          </Typography>
+          <Typography variant="body2" component="p"  dangerouslySetInnerHTML={{__html:html}}/>
           
-        </Typography>
-        <Typography variant="body2" component="p">
-          Release date: {commander.releaseDate}
-        </Typography>
-        <Typography variant="body2" component="p">
-          Set: {commander.set}
-        </Typography>
-        <Typography variant="body2" component="p">
-          {/* Rarity: {commander.rarity} */}
-        </Typography>
-        <Typography variant="body2" component="p">
-          {/* Color: {commander.color} */}
-        </Typography>
-        <Typography variant="body2" component="p">
-          <GatsbyImage image={image}  />
-        </Typography>
-      </CardContent>
-    </Card>
+        </CardContent>
+        <CardMedia  sx={{ width: 151 }}>
+            <GatsbyImage image={image}  />
+        </CardMedia>
+      </Card>
     </Layout>
 
   )
