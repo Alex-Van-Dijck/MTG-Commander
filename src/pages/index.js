@@ -1,5 +1,5 @@
 import * as React from "react"
-import { Link } from "gatsby"
+import { Link,graphql } from "gatsby"
 import { StaticImage } from "gatsby-plugin-image"
 import { Grid, Card, CardActionArea, CardContent, CardMedia, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
@@ -29,7 +29,8 @@ const IndexPage = ({data: {wpPage:{homeFields:{featuredCommanders,description,ti
       <Seo title="Home" />
       <Grid container spacing={3}>
         {featuredCommanders.map((featuredCommander) => {
-          const commander = featuredCommander;
+          const commander = featuredCommander.commanderMeta;
+          console.log(commander);
           const html = commander.description;
           const slug = commander.slug;
           console.log(slug);
