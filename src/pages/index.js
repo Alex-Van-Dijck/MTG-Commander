@@ -52,9 +52,7 @@ const IndexPage = ({data: {wpPage:{homeFields:{featuredCommanders,description,ti
                   <Typography gutterBottom variant="h5" component="h2">
                     {commander.name}
                   </Typography>
-                  <Typography variant="body2" color="textSecondary" component="p" dangerouslySetInnerHTML={{__html:html}}>
-                    
-                  </Typography>
+                  <Typography variant="body2" color="textSecondary" component="p" dangerouslySetInnerHTML={{__html:html}}/>
                 </CardContent>
               </CardActionArea>
             </Card>
