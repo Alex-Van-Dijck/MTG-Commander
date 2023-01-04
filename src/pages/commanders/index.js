@@ -31,7 +31,7 @@ const CommandersPage = ({data: {allWpCommander: {edges}}}) => {
           console.log(edge.node)
           return <Grid item xs={12} sm={6} md={4} key={commander.name} >
             <Card className={classes.card}>
-              <CardActionArea href={"/commanders/"+{slug}}>
+              <CardActionArea href={`/commanders/${slug}`}>
                 <CardMedia
                   className={classes.media}
                   image={commander.art.sourceUrl}

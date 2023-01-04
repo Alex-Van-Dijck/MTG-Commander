@@ -30,19 +30,19 @@ const IndexPage = ({data: {wpPage:{homeFields:{featuredCommanders,description,ti
       <Box display="flex" flexDirection="column" alignItems="center" margin={2}>
         <img src={picture.sourceUrl} alt={title} />
         <Typography variant="h2" component="h1">{title}</Typography>
-        <Typography variant="body1" component="p" dangerouslySetInnerHTML={{__html:description}} marginBottom={'2rem'} ></Typography>
+        <Typography variant="body1" component="p" dangerouslySetInnerHTML={{__html:description}}  ></Typography>
         <Typography variant="h4" component="h2">Featured commanders:</Typography>
       </Box>
       <Grid container spacing={3}>
         {featuredCommanders.map((featuredCommander) => {
           const commander = featuredCommander.commanderMeta;
-          console.log(commander);
           const html = commander.description;
-          const slug = commander.slug;
+          const slug = (featuredCommander.slug).toString();
+          
           console.log(slug);
           return <Grid item xs={12} sm={6} md={4} key={commander.name} >
             <Card className={classes.card}>
-              <CardActionArea href={"/commanders/"+{slug}}>
+              <CardActionArea href={`/commanders/${slug}`}>
                 <CardMedia
                   className={classes.media}
                   image={commander.art.sourceUrl}
