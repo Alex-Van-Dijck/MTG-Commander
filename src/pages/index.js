@@ -4,7 +4,6 @@ import { StaticImage } from "gatsby-plugin-image"
 import { Grid, Card, CardActionArea, CardContent, CardMedia, Typography,Box } from '@mui/material';
 import Layout from "../components/layout"
 import Seo from "../components/seo"
-import styles from "../components/index.module.css"
 
 
 const IndexPage = ({data: {wpPage:{homeFields:{featuredCommanders,description,title,picture}}}}) => {
@@ -26,11 +25,11 @@ const IndexPage = ({data: {wpPage:{homeFields:{featuredCommanders,description,ti
           const slug = (featuredCommander.slug).toString();
 
           return <Grid item xs={12} sm={6} md={4} key={commander.name} >
-            <Card className={styles.card} >
+            <Card sx={{maxWidth:345}} >
               {/* Tried to use <Link> here but mui href was integrated. */}
               <CardActionArea href={`/commanders/${slug}`}>
                 <CardMedia
-                  className={styles.media}
+                  sx={{height:140}}
                   image={commander.art.sourceUrl}
                   title={commander.name}
                 />
