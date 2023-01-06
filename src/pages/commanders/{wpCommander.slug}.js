@@ -1,8 +1,9 @@
 import * as React from "react"
 import { graphql } from "gatsby"
-import { GatsbyImage, getImage } from "gatsby-plugin-image"
+import { GatsbyImage, getImage, StaticImage } from "gatsby-plugin-image"
 import Layout from "../../components/layout"
 import { Card, CardContent, Typography,CardMedia } from "@mui/material";
+
 
 
 const CommanderPage = ({
@@ -11,10 +12,9 @@ const CommanderPage = ({
     },
   }) => {
 
+
   const image = getImage(commander.art.localFile);
   const html = commander.description;
-
-  console.log(commander.color);
 
   return (
     <Layout>
@@ -39,13 +39,14 @@ const CommanderPage = ({
             <b>Rarity:</b> {commander.rarity}
           </Typography>
           <Typography variant="body2" component="p">
-            <b>Color(s):</b> {commander.color}
+            <b>Color(s):</b> {commander.color.map((color) =>{
+              return color + ' ';
+            })}
           </Typography>
           <Typography variant="body2" component="p"  dangerouslySetInnerHTML={{__html:html}}/>
-          
         </CardContent>
         <CardMedia  sx={{ width: 151 }}>
-            <GatsbyImage image={image}  />
+            <GatsbyImage image={image} style={{height:'100%',width:'100%'}} />
         </CardMedia>
       </Card>
     </Layout>
@@ -77,6 +78,6 @@ query MyQuery($slug: String) {
     }
   }
   
-`
+  `
 
 export default CommanderPage
