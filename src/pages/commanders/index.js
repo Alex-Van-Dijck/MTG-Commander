@@ -3,10 +3,13 @@ import { graphql, useStaticQuery } from 'gatsby';
 import { Grid, Card, CardActionArea, CardContent, CardMedia, Typography } from '@mui/material';
 import Seo from "../../components/seo";
 import Layout from '../../components/layout';
+import { GatsbyImage, getImage } from "gatsby-plugin-image";
 
 
 
 const CommandersPage = ({data: {allWpCommander: {edges}}}) => {
+
+
 
   return (
     <Layout>
@@ -15,16 +18,14 @@ const CommandersPage = ({data: {allWpCommander: {edges}}}) => {
           const commander = edge.node.commanderMeta;
           const html = commander.description;
           const slug = edge.node.slug;
-          console.log(slug);
-          console.log(edge.node);
+          const image = getImage(commander.art.localFile);
+
           return <Grid item xs={12} sm={6} md={4} key={commander.name} >
             <Card sx={{maxWidth:345}}>
               <CardActionArea href={`/commanders/${slug}`}>
-                <CardMedia
-                  sx={{height:140}}
-                  image={commander.art.sourceUrl}
-                  title={commander.name}
-                />
+                <CardMedia sx={{height:140}}title={commander.name}>
+                  <GatsbyImage image={image}  style={{height:'100%',width:'100'}} objectFit="cover"/>
+                </CardMedia>
                 <CardContent>
                   <Typography gutterBottom variant="h5" component="h2">
                     {commander.name}
@@ -52,7 +53,11 @@ export const query = graphql`
             name
             description
             art {
-              sourceUrl
+              localFile {
+                childImageSharp {
+                  gatsbyImageData(placeholder: BLURRED)
+                }
+              }
             }
           }
         }

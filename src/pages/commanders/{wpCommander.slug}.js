@@ -67,11 +67,11 @@ query MyQuery($slug: String) {
         description
         color
         art{
-            localFile {
-                childImageSharp {
-                  gatsbyImageData(placeholder: BLURRED)
-                }
-              }
+          localFile {
+            childImageSharp {
+              gatsbyImageData(placeholder: BLURRED)
+            }
+          }
         }
       }
     }

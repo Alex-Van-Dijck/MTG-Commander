@@ -23,7 +23,7 @@ const contact = ()=> {
           <Typography component="h1" variant="h5">
             Contact
           </Typography>
-          <Box component="form" noValidate  sx={{ mt: 3 }}  >
+          <Box component="form" noValidate  sx={{ mt: 3 }} name="contact" data-netlify="true" >
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <TextField
@@ -80,6 +80,7 @@ const contact = ()=> {
                 />
               </Grid>
             </Grid>
+            <input type="hidden" name="form-name" value="contact" />
             <Button
               type="submit"
               fullWidth

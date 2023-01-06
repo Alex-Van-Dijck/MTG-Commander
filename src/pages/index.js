@@ -4,6 +4,7 @@ import { StaticImage } from "gatsby-plugin-image"
 import { Grid, Card, CardActionArea, CardContent, CardMedia, Typography,Box } from '@mui/material';
 import Layout from "../components/layout"
 import Seo from "../components/seo"
+import { GatsbyImage, getImage } from "gatsby-plugin-image";
 
 
 const IndexPage = ({data: {wpPage:{homeFields:{featuredCommanders,description,title,picture}}}}) => {
@@ -23,16 +24,15 @@ const IndexPage = ({data: {wpPage:{homeFields:{featuredCommanders,description,ti
           const commander = featuredCommander.commanderMeta;
           const html = commander.description;
           const slug = (featuredCommander.slug).toString();
+          const image = getImage(commander.art.localFile);
 
           return <Grid item xs={12} sm={6} md={4} key={commander.name} >
             <Card sx={{maxWidth:345}} >
               {/* Tried to use <Link> here but mui href was integrated. */}
               <CardActionArea href={`/commanders/${slug}`}>
-                <CardMedia
-                  sx={{height:140}}
-                  image={commander.art.sourceUrl}
-                  title={commander.name}
-                />
+                <CardMedia sx={{height:140}}title={commander.name}>
+                  <GatsbyImage image={image}  style={{height:'100%',width:'100'}} objectFit="cover"/>
+                </CardMedia>
                 <CardContent>
                   <Typography gutterBottom variant="h5" component="h2" sx={{Height:200}}>
                     {commander.name} 
@@ -58,7 +58,11 @@ query HomeQuery {
           commanderMeta {
             name
             art {
-              sourceUrl
+              localFile {
+                childImageSharp {
+                  gatsbyImageData(placeholder: BLURRED)
+                }
+              }
             }
           }
         }
