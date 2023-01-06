@@ -3,7 +3,7 @@ import { graphql, useStaticQuery } from 'gatsby';
 import { Grid, Card, CardActionArea, CardContent, CardMedia, Typography } from '@mui/material';
 import Seo from "../../components/seo";
 import Layout from '../../components/layout';
-import styles from "./index.module.css"
+
 
 
 const CommandersPage = ({data: {allWpCommander: {edges}}}) => {

@@ -1,47 +1,32 @@
 import * as React from "react"
 import PropTypes, { string } from "prop-types"
 import { Link } from "gatsby"
-import { makeStyles } from '@material-ui/core/styles';
-import {AppBar,Toolbar,Typography,Menu} from '@material-ui/core';
+import {AppBar,Toolbar,Typography} from '@material-ui/core';
+import './header.css';
+import { useTheme } from "@mui/material";
 
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
-  menuButton: {
-    marginRight: theme.spacing(2),
-  },
-  title: {
-    flexGrow: 1,
-    color: '#FFF',
-    fontWeight: 'bold',
-  },
-  appBar: {
-    background: '#000',
-  },
-}));
 
 
 const Header = ({ siteTitle }) => {
-  const classes = useStyles();
+
 
   return(
-    <div className={classes.root}>
-      <AppBar position="static" className={classes.appBar}>
-        <Toolbar >
-          <Typography variant="h6" className={classes.title}>
-            <Link to="/" style={{textDecoration:'none'}} >
-              {siteTitle}
+    <div >
+      <AppBar position="static" >
+        <Toolbar className="root">
+          <Typography variant="h6" >
+            <Link to="/"  className="link" >
+              MTG:Commander
             </Link>
           </Typography>
-          <Typography variant="h6" className={classes.title}>
-            <Link to="/commanders" style={{textDecoration:'none'}} >
+          <Typography variant="h6" >
+            <Link to="/commanders" className="link" >
               Commanders
             </Link>
           </Typography>
-          <Typography variant="h6" className={classes.title}>
-            <Link to="/contact" style={{textDecoration:'none'}} >
+          <Typography variant="h6" >
+            <Link to="/contact"  className="link">
               Contact
             </Link>
           </Typography>
