@@ -6,6 +6,7 @@ import Layout from '../components/layout';
 
 const contact = ()=> {
 
+
   return(
         <Layout>
             <Box
@@ -18,7 +19,7 @@ const contact = ()=> {
           }}
         >
           <Avatar sx={{ m: 1}} >
-            <ConnectWithoutContactIcon  />
+            <ConnectWithoutContactIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
             Contact
