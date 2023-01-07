@@ -1,6 +1,5 @@
 import * as React from "react"
-import { Link,graphql } from "gatsby"
-import { StaticImage } from "gatsby-plugin-image"
+import { graphql } from "gatsby"
 import { Grid, Card, CardActionArea, CardContent, CardMedia, Typography,Box } from '@mui/material';
 import Layout from "../components/layout"
 import Seo from "../components/seo"
@@ -9,12 +8,13 @@ import { GatsbyImage, getImage } from "gatsby-plugin-image";
 
 const IndexPage = ({data: {wpPage:{homeFields:{featuredCommanders,description,title,picture}}}}) => {
 
+  const bannerimg = getImage(picture.localFile);
 
   return(
     <Layout>
       <Seo title="Home" />
       <Box display="flex" flexDirection="column" alignItems="center" margin={2}>
-        <img src={picture.sourceUrl} alt={title} />
+      <GatsbyImage image={bannerimg}  style={{height:'100%',width:'100'}} objectFit="cover"/>
         <Typography variant="h2" component="h1">{title}</Typography>
         <Typography variant="body1" component="p" dangerouslySetInnerHTML={{__html:description}}  ></Typography>
         <Typography variant="h4" component="h2">Featured commanders:</Typography>
@@ -70,7 +70,11 @@ query HomeQuery {
       description
       title
       picture {
-        sourceUrl
+        localFile {
+          childImageSharp {
+            gatsbyImageData(placeholder: BLURRED)
+          }
+        }
       }
     }
   }

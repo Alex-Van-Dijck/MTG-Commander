@@ -1,6 +1,6 @@
 import * as React from "react"
 import { graphql } from "gatsby"
-import { GatsbyImage, getImage, StaticImage } from "gatsby-plugin-image"
+import { GatsbyImage, getImage} from "gatsby-plugin-image"
 import Layout from "../../components/layout"
 import { Card, CardContent, Typography,CardMedia } from "@mui/material";
 

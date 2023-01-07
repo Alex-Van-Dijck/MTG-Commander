@@ -1,15 +1,10 @@
 import * as React from "react"
-import PropTypes, { string } from "prop-types"
+import PropTypes from "prop-types"
 import { Link } from "gatsby"
 import {AppBar,Toolbar,Typography} from '@material-ui/core';
 import './header.css';
-import { useTheme } from "@mui/material";
-
-
-
 
 const Header = ({ siteTitle }) => {
-
 
   return(
     <div >
